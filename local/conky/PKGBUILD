@@ -1,0 +1,45 @@
+# conky with nvidia and audacious support enabled
+
+pkgname=conky
+pkgver=1.8.1
+pkgrel=2
+pkgdesc='An advanced, highly configurable system monitor for X based on torsmo'
+arch=('i686' 'x86_64')
+url='http://conky.sourceforge.net/'
+license=('custom')
+replaces=('torsmo')
+depends=('libxml2' 'curl' 'wireless_tools' 'libxft' 'glib2' 'libxdamage' 'imlib2' 'libxnvctrl' 'audacious' 'lua')
+makedepends=('pkgconfig')
+backup=('etc/conky/conky.conf' 'etc/conky/conky_no_x11.conf')
+source=("http://downloads.sourceforge.net/project/${pkgname}/${pkgname}/${pkgver}/${pkgname}-${pkgver}.tar.gz"
+        "conky-1.8.1-nvidia-x.patch"
+        "current-power.patch")
+sha1sums=('06bbe9b7eed8603fa7a971b27c5c61f38424ac6f'
+          '1e3dc3f2a8e44d62e25ab2ab22726e0e91ecf666'
+          '2eeef0cc5a0b612826b2a7f0b43b7a3b7e10bf0b')
+
+build() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+
+    patch -Np1 -i ${srcdir}/conky-1.8.1-nvidia-x.patch
+    patch -Np1 -i ${srcdir}/current-power.patch
+
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc \
+        --enable-wlan \
+        --enable-rss \
+        --enable-ibm \
+        --enable-imlib2 \
+        --enable-lua \
+        --enable-nvidia \
+        --enable-audacious=yes
+
+    make
+}
+
+package() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+    make DESTDIR="${pkgdir}" install
+    install -D -m644 COPYING "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+}
