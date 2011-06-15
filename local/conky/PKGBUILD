@@ -1,8 +1,8 @@
-# conky with nvidia and audacious support enabled
+# conky with my custom settings
 
 pkgname=conky
 pkgver=1.8.1
-pkgrel=2
+pkgrel=3
 pkgdesc='An advanced, highly configurable system monitor for X based on torsmo'
 arch=('i686' 'x86_64')
 url='http://conky.sourceforge.net/'
@@ -29,11 +29,10 @@ build() {
         --sysconfdir=/etc \
         --enable-wlan \
         --enable-rss \
-        --enable-ibm \
         --enable-imlib2 \
         --enable-lua \
         --enable-nvidia \
-        --enable-audacious=yes
+        --disable-moc
 
     make
 }
