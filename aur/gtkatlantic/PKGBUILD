@@ -16,7 +16,7 @@ source=(http://gtkatlantic.gradator.net/downloads/v0.4/$pkgname-$pkgver.tar.gz
         gcc46-warnings.patch)
 md5sums=('61c34b8705e0e38764c1c79810c20bed'
          '5199c06f6434ce12b0da16c321ad7566'
-'246e0fa05ea7745db047047095a5d4ce')
+         '314da0bb57677348676a3b8d59f17dbf')
 
 build() {
   cd "${srcdir}/${pkgname}-${pkgver}"
@@ -24,7 +24,7 @@ build() {
   patch -Np1 -i ${srcdir}/libpng14.patch
   patch -Np1 -i ${srcdir}/gcc46-warnings.patch
 
-  ./configure --prefix=/usr
+  ./autogen.sh --prefix=/usr
   make
 }
 

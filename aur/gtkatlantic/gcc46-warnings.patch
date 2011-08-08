@@ -5,7 +5,7 @@
  
  if test "x$GCC" = "xyes"; then  \
 -      CFLAGS="-Wall -Werror -ggdb";  \ 
-+      CFLAGS="-Wall -Wunused-but-set-variable -Werror -ggdb ";  \ 
++      CFLAGS="-Wall -Werror -ggdb -Wno-unused-but-set-variable -Wno-system-headers"; \
  fi
  
  AC_OUTPUT([
