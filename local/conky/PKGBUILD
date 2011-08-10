@@ -2,13 +2,13 @@
 
 pkgname=conky
 pkgver=1.8.1
-pkgrel=3
+pkgrel=4
 pkgdesc='An advanced, highly configurable system monitor for X based on torsmo'
 arch=('i686' 'x86_64')
 url='http://conky.sourceforge.net/'
 license=('custom')
 replaces=('torsmo')
-depends=('libxml2' 'curl' 'wireless_tools' 'libxft' 'glib2' 'libxdamage' 'imlib2' 'libxnvctrl' 'audacious' 'lua')
+depends=('alsa-lib' 'libxml2' 'curl' 'wireless_tools' 'libxft' 'glib2' 'libxdamage' 'imlib2' 'libxnvctrl')
 makedepends=('pkgconfig')
 backup=('etc/conky/conky.conf' 'etc/conky/conky_no_x11.conf')
 source=("http://downloads.sourceforge.net/project/${pkgname}/${pkgname}/${pkgver}/${pkgname}-${pkgver}.tar.gz"
@@ -24,15 +24,23 @@ build() {
     patch -Np1 -i ${srcdir}/conky-1.8.1-nvidia-x.patch
     patch -Np1 -i ${srcdir}/current-power.patch
 
+    sed -i '
+    /#include <curl\/types.h>/ c\
+    //#include <curl/types.h>' src/eve.c
+
+    sed -i '
+    /#include <curl\/types.h>/ c\
+    //#include <curl/types.h>' src/ccurl_thread.c
+
     ./configure \
         --prefix=/usr \
         --sysconfdir=/etc \
         --enable-wlan \
-        --enable-rss \
         --enable-imlib2 \
-        --enable-lua \
         --enable-nvidia \
-        --disable-moc
+        --disable-lua \
+        --disable-moc \
+        --disable-apcupsd
 
     make
 }
