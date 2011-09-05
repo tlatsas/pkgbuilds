@@ -1,4 +1,4 @@
-# Maintainer: Laszlo Papp <djszapi at archlinux us>
+# Maintainer: Tasos Latsas <tlatsas2000 at gmail dot com>
 # Contributor: Laszlo Papp <djszapi at archlinux us>
 
 pkgname=django-piston
