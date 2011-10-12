@@ -1,12 +1,5 @@
-# This is an example PKGBUILD file. Use this as a start to creating your own,
-# and remove these comments. For more information, see 'man PKGBUILD'.
-# NOTE: Please fill out the license field for your package! If it is unknown,
-# then please put 'unknown'.
+# Maintainer: Tasos Latsas <tlatsas2000 _at_ gmail _dot_ com>
 
-# See http://wiki.archlinux.org/index.php/VCS_PKGBUILD_Guidelines
-# for more information on packaging from SVN sources.
-
-# Maintainer: Your Name <youremail@domain.com>
 pkgname=camshot-svn
 pkgver=12
 pkgrel=1
@@ -14,12 +7,8 @@ pkgdesc="Linux console webcam screenshot utility"
 arch=('i686' 'x86_64')
 url="http://code.google.com/p/camshot/"
 license=('GPL')
-groups=()
 depends=('glibc')
 makedepends=('subversion')
-source=()
-noextract=()
-md5sums=() #generate with 'makepkg -g'
 
 _svntrunk="http://camshot.googlecode.com/svn/trunk/"
 _svnmod="trunk"
@@ -41,11 +30,6 @@ build() {
   cp -r "$srcdir/$_svnmod" "$srcdir/$_svnmod-build"
   cd "$srcdir/$_svnmod-build"
 
-  #
-  # BUILD HERE
-  #
-  #./autogen.sh
-  #./configure --prefix=/usr
   make
 }
 
