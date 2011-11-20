@@ -8,6 +8,7 @@ pkgdesc="A dedicated game server daemon for playing Monopoly-like board games"
 url="http://www.robertjohnkaper.com/software/atlantik/"
 license=('GPL')
 depends=('libcapsinetwork' 'libmath++')
+backup=(etc/monopd/monopd.conf)
 source=(gcc4.3.patch \
   http://ftp.de.debian.org/debian/pool/main/m/${pkgname}/${pkgname}_${pkgver}.orig.tar.gz)
 md5sums=('4aaadb534ce40348f77c63ce61e73fab' 'e1d9f3be887baf35fbb46886cea8038f')
