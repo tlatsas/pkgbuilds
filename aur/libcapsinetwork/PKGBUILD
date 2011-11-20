@@ -18,8 +18,8 @@ md5sums=('a82db90a413565bc87c64db3580c8c86' '9e6e221fdd1ec53c518b2ca61830e8cf')
 
 build() {
   cd "$srcdir/$pkgname-$pkgver"
-  patch -p1 < ../gcc4.3.patch || return 1
-  #./configure --prefix=/usr --build=i686-linux-gnu
+
+  patch -Np1 -i "$srcdir/gcc4.3.patch"
   ./configure --prefix=/usr
   make
 }

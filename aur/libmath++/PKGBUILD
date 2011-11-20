@@ -27,5 +27,5 @@ package() {
   cd "$srcdir/$pkgname-$pkgver"
   make DESTDIR="$pkgdir" install
   # libtoolslay
-  find "$pkgdir" -name '*.la' -delete;
+  find "$pkgdir" -name '*.la' -delete
 }
