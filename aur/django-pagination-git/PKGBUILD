@@ -41,5 +41,5 @@ package() {
   cd "$srcdir/$_gitname-build"
 
   python2 setup.py install --prefix=/usr --root="$pkgdir"
-  install -Dm644 COPYING "${pkgdir}/usr/share/licenses/${_gitname}/COPYING"
+  install -Dm644 COPYING "$pkgdir/usr/share/licenses/$_gitname/COPYING"
 }

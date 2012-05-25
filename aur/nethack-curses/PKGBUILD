@@ -17,7 +17,7 @@ depends=('ncurses' 'gzip')
 conflicts=('nethack')
 provides=('nethack')
 install="nethack-curses.install"
-source=("http://downloads.sourceforge.net/nethack/${_nhver}/nethack-${_nhver//.}-src.tgz"
+source=("http://downloads.sourceforge.net/nethack/$_nhver/nethack-${_nhver//.}-src.tgz"
         "http://nethack.edeca.net/karl/${_patch}.patch.gz"
         "nethackrc.proto")
 md5sums=('21479c95990eefe7650df582426457f9'
@@ -66,13 +66,13 @@ package() {
 
   make PREFIX=$pkgdir/usr install manpages
 
-  sed -e "s|HACKDIR=${pkgdir}/usr/|HACKDIR=/usr/|" \
+  sed -e "s|HACKDIR=$pkgdir/usr/|HACKDIR=/usr/|" \
       -e 's|HACK=$HACKDIR|HACK=/usr/lib/nethack|' \
-      -i ${pkgdir}/usr/bin/nethack
+      -i $pkgdir/usr/bin/nethack
 
-  install -dm755 ${pkgdir}/usr/lib/nethack
-  mv ${pkgdir}/usr/share/nethack/{nethack,recover} ${pkgdir}/usr/lib/nethack/
-  install -Dm644 doc/Guidebook.txt ${pkgdir}/usr/share/doc/nethack/Guidebook.txt
-  install -Dm644 ${srcdir}/nethackrc.proto ${pkgdir}/usr/share/doc/nethack
-  install -Dm644 dat/license ${pkgdir}/usr/share/licenses/${pkgname}/LICENSE
+  install -dm755 $pkgdir/usr/lib/nethack
+  mv $pkgdir/usr/share/nethack/{nethack,recover} $pkgdir/usr/lib/nethack/
+  install -Dm644 doc/Guidebook.txt $pkgdir/usr/share/doc/nethack/Guidebook.txt
+  install -Dm644 $srcdir/nethackrc.proto $pkgdir/usr/share/doc/nethack
+  install -Dm644 dat/license $pkgdir/usr/share/licenses/$pkgname/LICENSE
 }

@@ -35,7 +35,7 @@ build() {
 
 package() {
   cd "$srcdir/$_svnmod-build"
-  install -Dm775 camshot "${pkgdir}/usr/bin/camshot"
+  install -Dm775 camshot "$pkgdir/usr/bin/camshot"
 }
 
 # vim:set ts=2 sw=2 et:

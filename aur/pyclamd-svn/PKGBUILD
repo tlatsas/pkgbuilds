@@ -34,9 +34,9 @@ build() {
 
   patch -Np1 -i ${srcdir}/example-fix.patch
 
-  sed -i 's,#!/usr/bin/env python,&2,' "${srcdir}/${_svnmod-build}/__init__.py"
-  sed -i 's,#!/usr/bin/env python,&2,' "${srcdir}/${_svnmod-build}/example.py"
-  sed -i 's,#!/usr/bin/env python,&2,' "${srcdir}/${_svnmod-build}/pyclamd.py"
+  sed -i 's,#!/usr/bin/env python,&2,' "$srcdir/$_svnmod-build/__init__.py"
+  sed -i 's,#!/usr/bin/env python,&2,' "$srcdir/$_svnmod-build/example.py"
+  sed -i 's,#!/usr/bin/env python,&2,' "$srcdir/$_svnmod-build/pyclamd.py"
 
   python2 setup.py build
 }
