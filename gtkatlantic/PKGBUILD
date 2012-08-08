@@ -13,11 +13,13 @@ license=('GPL')
 depends=('gtk2')
 source=(http://gtkatlantic.gradator.net/downloads/v0.4/$pkgname-$pkgver.tar.gz
         libpng14.patch
-        gcc46-warnings.patch)
+        gcc46-warnings.patch
+        gtkatlantic.desktop)
 
 md5sums=('61c34b8705e0e38764c1c79810c20bed'
          '5199c06f6434ce12b0da16c321ad7566'
-         '1c3fcc799ef2a8bf55a58eb83d6008f0')
+         '1c3fcc799ef2a8bf55a58eb83d6008f0'
+         '8f570f9210682354b21517e6692ed08a')
 
 build() {
   cd "${srcdir}/${pkgname}-${pkgver}"
@@ -33,4 +35,6 @@ package() {
   cd "${srcdir}/${pkgname}-${pkgver}"
 
   make DESTDIR="${pkgdir}" install
+  install -Dm644 $srcdir/$pkgname.desktop \
+      $pkgdir/usr/share/applications/$pkgname.desktop
 }
