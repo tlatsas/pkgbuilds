@@ -1,6 +1,7 @@
 *.gz
 *.xz
 *.bz2
+*.tgz
 src/
 pkg/
 *.sig
